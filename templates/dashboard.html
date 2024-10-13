@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Your Health Dashboard</h2>
+    <div id="charts" class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Exercise Data</h5>
+                    <!-- Chart for exercise data -->
+                    <p>Exercise data visualization will be here.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Meditation Data</h5>
+                    <!-- Chart for meditation data -->
+                    <p>Meditation data visualization will be here.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Sleep Data</h5>
+                    <!-- Chart for sleep data -->
+                    <p>Sleep data visualization will be here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
