@@ -1,11 +1,12 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from forms import HealthDataForm
 
 app = Flask(__name__)
 # Add a secret key to the app
-app.config ['SECRET_KEY'] = 'secretkey'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///health_data.db'
+app.config ['SECRET_KEY'] = os.environ.get('SECRET_KEY','secretkey')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('POSTGRES_URL', 'sqlite:///health_data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # to ensure we are not tracking modifications
 
 db = SQLAlchemy(app)
@@ -20,7 +21,9 @@ class HealthData(db.Model):
 def __repr__(self):
     return f'<Healthdata {self.id}>'
 
-
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 @app.route('/')
 def index():

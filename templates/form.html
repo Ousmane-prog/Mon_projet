@@ -4,7 +4,7 @@ block content %}
   <div class="card-body">
     <h2 class="card-title">Enter Your Health Data</h2>
     <form method="POST">
-        {{form.hidden_tag()}}
+      {{form.hidden_tag()}}
       <div class="form-group">
         {{form.date.label(class="form-label")}}
         {{form.date(class='form-control')}} {% if form.date.errors%}

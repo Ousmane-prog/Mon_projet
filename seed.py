@@ -9,7 +9,7 @@ db.create_all()
 
 # Generate dummy data for the past 3 months
 start_date = datetime.now() - timedelta(days=90)
-for i in range(90):
+for i in range(5):
     date = start_date + timedelta(days=i)
     exercise = random.randint(0, 120)  # Exercise in minutes
     meditation = random.randint(0, 60)  # Meditation in minutes
