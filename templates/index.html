@@ -1,11 +1,74 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Tracker Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <style>
+      .image-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Optional: Adds space between images */
+      }
 
-{% block title %}Home{% endblock %}
+      .image-container img {
+        max-width: 450px; /* Adjust as needed */
+        height: auto;
+      }
 
-{% block content %}
+      /* .image-container img.active {
+        border: 2px solid #007bff; /* Optional: Highlight active image
+      } */
+    </style>
+  </head>
+  <body>
+    {% extends 'base.html' %} {% block title %}Home{% endblock %} {% block
+    content %}
     <div class="text-center">
-        <h2>Welcome to the Health Tracker Dashboard</h2>
-        <p class="lead">This is your one-stop solution to track your daily health activities including exercise, meditation, and sleep.</p>
-        <a href="{{ url_for('form') }}" class="btn btn-info btn-lg">Start Tracking Your Health</a>
+      <h2>Welcome to Daily Health Activity Traker Web App</h2>
+      <p class="lead">
+        This website healps you keep track of your daily health activities
+        including exercise, meditation, and sleep.
+      </p>
+      <a href="{{ url_for('form') }}" class="btn btn-info btn-lg"
+        >Add a Activity to your Record</a
+      >
     </div>
-{% endblock %}
+    <div class="image-container mt-4">
+      <img
+        src="{{ url_for('static', filename='images/image1.jpg') }}"
+        alt="Image 1"
+        class="active"
+      />
+      <img
+        src="{{ url_for('static', filename='images/image2.jpg') }}"
+        alt="Image 2"
+      />
+      <img
+        src="{{ url_for('static', filename='images/image3.jpg') }}"
+        alt="Image 3"
+      />
+    </div>
+    {% endblock %} {% block scripts %} {{ super() }}
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let currentIndex = 0;
+        const images = document.querySelectorAll(".image-container img");
+        const totalImages = images.length;
+
+        function showNextImage() {
+          images[currentIndex].classList.remove("active");
+          currentIndex = (currentIndex + 1) % totalImages;
+          images[currentIndex].classList.add("active");
+        }
+
+        setInterval(showNextImage, 3000); // Change image every 3 seconds
+      });
+    </script>
+    {% endblock %}
+  </body>
+</html>
